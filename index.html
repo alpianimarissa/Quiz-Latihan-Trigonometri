@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Trigonometri SMA Kelas 10 - Persiapan Ulangan</title>
+  <!-- KaTeX untuk tampilan rumus matematika yang rapi (dengan fallback aman jika offline) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathSafe()"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --danger-border: #fca5a5;
+      --warning: #d97706;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: white;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .header-title h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .header-title p {
+      font-size: 0.85rem;
+      color: #dbeafe;
+    }
+
+    .status-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(4px);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+    }
+
+    .dot.offline {
+      background: #fbbf24;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+      padding: 1.5rem;
+    }
+
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-number {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+    }
+
+    .q-topic {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .question-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 1.35rem;
+      color: var(--text);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 1rem;
+      color: var(--text);
+      transition: all 0.16s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-letter {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .option-btn.correct .option-letter {
+      background: var(--success);
+      color: white;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+      color: #7f1d1d;
+    }
+
+    .option-btn.wrong .option-letter {
+      background: var(--danger);
+      color: white;
+    }
+
+    .feedback-box {
+      margin-top: 1.35rem;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .feedback-box.show {
+      display: block;
+    }
+
+    .feedback-box.is-correct {
+      background: #f0fdf4;
+      border: 1px solid var(--success-border);
+      color: #166534;
+    }
+
+    .feedback-box.is-wrong {
+      background: #fef2f2;
+      border: 1px solid var(--danger-border);
+      color: #991b1b;
+    }
+
+    .feedback-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .feedback-exp {
+      font-size: 0.94rem;
+      color: #1e293b;
+    }
+
+    .nav-controls {
+      margin-top: 1.5rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      padding: 0.65rem 1.2rem;
+      border-radius: 10px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #cbd5e1;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-dark);
+    }
+
+    .btn-danger-outline {
+      background: transparent;
+      border: 1px solid #fca5a5;
+      color: var(--danger);
+      width: 100%;
+      justify-content: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .btn-danger-outline:hover {
+      background: #fef2f2;
+    }
+
+    /* Sidebar Navigasi */
+    .sidebar-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .stats-mini {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .stat-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.5rem 0.25rem;
+    }
+
+    .stat-val {
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .stat-lbl {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.45rem;
+    }
+
+    .nav-num {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-num:hover {
+      border-color: var(--primary);
+    }
+
+    .nav-num.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2.5px rgba(37, 99, 235, 0.28);
+      transform: scale(1.04);
+    }
+
+    .nav-num.answered-correct {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .nav-num.answered-wrong {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: white;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.9rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .legend i {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .summary-banner {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 1px solid #93c5fd;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .summary-banner.show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-title">
+      <h1>Latihan Ulangan Trigonometri — SMA Kelas 10</h1>
+      <p>Aturan Sin-Cos-Tan Segitiga, Aplikasi Nyata, Sudut Positif/Negatif &amp; Sudut &gt; 90°</p>
+    </div>
+    <div class="status-badges">
+      <div class="badge" id="net-status" title="Progres tersimpan otomatis di perangkat Anda">
+        <span class="dot" id="net-dot"></span>
+        <span id="net-text">Tersimpan Otomatis</span>
+      </div>
+      <div class="badge">
+        Nilai: <span id="header-score">0</span> / 100
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <!-- Area Soal Utama -->
+  <section class="card" aria-live="polite">
+    <div class="question-meta">
+      <span class="q-number" id="q-number-label">Soal 1 dari 30</span>
+      <span class="q-topic" id="q-topic-label">Topik</span>
+    </div>
+
+    <div class="question-text" id="question-text">Memuat soal...</div>
+
+    <div class="options-list" id="options-container"></div>
+
+    <div class="feedback-box" id="feedback-box">
+      <div class="feedback-title" id="feedback-title"></div>
+      <div class="feedback-exp" id="feedback-exp"></div>
+    </div>
+
+    <div class="nav-controls">
+      <button class="btn btn-secondary" id="prev-btn" onclick="goPrev()">← Sebelumnya</button>
+      <span style="font-size: 0.85rem; color: var(--muted);" id="save-indicator">Progres aman di browser</span>
+      <button class="btn btn-primary" id="next-btn" onclick="goNext()">Selanjutnya →</button>
+    </div>
+  </section>
+
+  <!-- Sidebar Navigasi & Skor -->
+  <aside class="card">
+    <div class="sidebar-title">
+      <span>Navigasi Soal</span>
+      <span id="progress-text" style="font-size: 0.85rem; color: var(--primary);">0/30</span>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+
+    <div class="stats-mini">
+      <div class="stat-item">
+        <div class="stat-val" style="color: var(--success);" id="stat-correct">0</div>
+        <div class="stat-lbl">Benar</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val" style="color: var(--danger);" id="stat-wrong">0</div>
+        <div class="stat-lbl">Salah</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val" style="color: var(--muted);" id="stat-unanswered">30</div>
+        <div class="stat-lbl">Kosong</div>
+      </div>
+    </div>
+
+    <div class="nav-grid" id="nav-grid"></div>
+
+    <div class="legend">
+      <span><i style="background: var(--success);"></i> Benar</span>
+      <span><i style="background: var(--danger);"></i> Salah</span>
+      <span><i style="background: #fff; border: 1.5px solid var(--border);"></i> Belum</span>
+    </div>
+
+    <div class="summary-banner" id="summary-banner">
+      <div style="font-weight: 800; color: #1e3a8a; font-size: 1rem;">Semua 30 Soal Selesai!</div>
+      <div style="font-size: 0.9rem; margin-top: 0.25rem;" id="final-grade-text"></div>
+    </div>
+
+    <button class="btn btn-danger-outline" onclick="resetQuiz()">Reset &amp; Ulangi Kuis</button>
+  </aside>
+</main>
+
+<script>
+  // Kunci penyimpanan lokal agar progres tetap aman saat reload atau putus jaringan
+  const STORAGE_KEY = 'kuis_trig_sma10_v1';
+
+  // Bank 30 Soal Trigonometri SMA Kelas 10
+  // Distribusi jawaban benar (correct):
+  // Index 0 (A): 7 soal | Index 1 (B): 8 soal | Index 2 (C): 8 soal | Index 3 (D): 7 soal
+  // Urutan acak dan tidak membentuk pola berulang.
+  const QUESTIONS = [
+    {
+      topic: "Perbandingan Segitiga Siku-siku",
+      question: "Diketahui segitiga siku-siku $ABC$ dengan siku-siku di $B$. Jika panjang sisi $AB = 8\\text{ cm}$ dan $\\angle A = 60^\\circ$, maka panjang sisi miring $AC$ adalah ....",
+      options: ["$4\\text{ cm}$", "$8\\sqrt{3}\\text{ cm}$", "$16\\text{ cm}$", "$4\\sqrt{3}\\text{ cm}$"],
+      correct: 2,
+      explanation: "$\\cos 60^\\circ = \\frac{\\text{samping}}{\\text{miring}} = \\frac{AB}{AC} \\Rightarrow \\frac{1}{2} = \\frac{8}{AC} \\Rightarrow AC = 16\\text{ cm}$."
+    },
+    {
+      topic: "Aplikasi Kasus Nyata",
+      question: "Sebuah tangga sepanjang $6\\text{ m}$ disandarkan pada dinding vertikal. Jika sudut yang dibentuk tangga dengan lantai horizontal adalah $30^\\circ$, ketinggian ujung atas tangga dari lantai adalah ....",
+      options: ["$3\\text{ m}$", "$3\\sqrt{2}\\text{ m}$", "$3\\sqrt{3}\\text{ m}$", "$2\\sqrt{3}\\text{ m}$"],
+      correct: 0,
+      explanation: "Tinggi dinding berada di depan sudut $30^\\circ$, sehingga $t = 6 \\cdot \\sin 30^\\circ = 6 \\cdot \\frac{1}{2} = 3\\text{ m}$."
+    },
+    {
+      topic: "Sudut Lebih dari 90°",
+      question: "Nilai dari $\\sin 150^\\circ + \\cos 120^\\circ$ adalah ....",
+      options: ["$1$", "$0$", "$-1$", "$\\frac{1}{2}$"],
+      correct: 1,
+      explanation: "$\\sin 150^\\circ = \\sin(180^\\circ - 30^\\circ) = \\sin 30^\\circ = \\frac{1}{2}$, sedangkan $\\cos 120^\\circ = -\\cos 60^\\circ = -\\frac{1}{2}$. Maka $\\frac{1}{2} + (-\\frac{1}{2}) = 0$."
+    },
+    {
+      topic: "Sudut Negatif & Positif",
+      question: "Nilai eksak dari $\\cos(-45^\\circ) + \\sin(-30^\\circ)$ adalah ....",
+      options: ["$\\frac{\\sqrt{2} + 1}{2}$", "$\\frac{-\\sqrt{2} - 1}{2}$", "$\\frac{\\sqrt{3} - 1}{2}$", "$\\frac{\\sqrt{2} - 1}{2}$"],
+      correct: 3,
+      explanation: "$\\cos(-\\alpha) = \\cos \\alpha$ sehingga $\\cos(-45^\\circ) = \\frac{1}{2}\\sqrt{2}$, dan $\\sin(-\\alpha) = -\\sin \\alpha$ sehingga $\\sin(-30^\\circ) = -\\frac{1}{2}$. Jumlahnya $\\frac{\\sqrt{2}-1}{2}$."
+    },
+    {
+      topic: "Perbandingan Segitiga Siku-siku",
+      question: "Pada segitiga siku-siku $PQR$ dengan siku-siku di $Q$, diketahui panjang $PQ = 12\\text{ cm}$ dan $\\tan P = \\frac{3}{4}$. Panjang sisi $PR$ adalah ....",
+      options: ["$9\\text{ cm}$", "$15\\text{ cm}$", "$16\\text{ cm}$", "$20\\text{ cm}$"],
+      correct: 1,
+      explanation: "$\\tan P = \\frac{QR}{PQ} = \\frac{3}{4} \\Rightarrow \\frac{QR}{12} = \\frac{3}{4} \\Rightarrow QR = 9\\text{ cm}$. Dengan Pythagoras, $PR = \\sqrt{12^2 + 9^2} = 15\\text{ cm}$."
+    },
+    {
+      topic: "Aplikasi Kasus Nyata",
+      question: "Seorang siswa dengan tinggi mata $1,6\\text{ m}$ berdiri sejauh $20\\text{ m}$ dari tiang bendera dan melihat puncak tiang dengan sudut elevasi $45^\\circ$. Tinggi tiang bendera tersebut adalah ....",
+      options: ["$20\\text{ m}$", "$20,6\\text{ m}$", "$21,6\\text{ m}$", "$18,4\\text{ m}$"],
+      correct: 2,
+      explanation: "Tinggi tiang di atas mata $= 20 \\cdot \\tan 45^\\circ = 20 \\cdot 1 = 20\\text{ m}$. Total tinggi tiang $= 20 + 1,6 = 21,6\\text{ m}$."
+    },
+    {
+      topic: "Sudut Lebih dari 90°",
+      question: "Nilai dari $\\tan 225^\\circ \\cdot \\cos 300^\\circ$ adalah ....",
+      options: ["$\\frac{1}{2}$", "$-\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$", "$-\\frac{\\sqrt{3}}{2}$"],
+      correct: 0,
+      explanation: "$\\tan 225^\\circ = \\tan(180^\\circ + 45^\\circ) = \\tan 45^\\circ = 1$ (Kuadran III positif). $\\cos 300^\\circ = \\cos(360^\\circ - 60^\\circ) = \\cos 60^\\circ = \\frac{1}{2}$ (Kuadran IV positif). Hasilnya $1 \\cdot \\frac{1}{2} = \\frac{1}{2}$."
+    },
+    {
+      topic: "Sudut Negatif & Positif",
+      question: "Jika $\\alpha = -120^\\circ$, maka nilai dari $\\tan \\alpha$ adalah ....",
+      options: ["$-\\sqrt{3}$", "$-\\frac{1}{3}\\sqrt{3}$", "$\\frac{1}{3}\\sqrt{3}$", "$\\sqrt{3}$"],
+      correct: 3,
+      explanation: "$\\tan(-120^\\circ) = -\\tan 120^\\circ = -(-\\tan 60^\\circ) = \\tan 60^\\circ = \\sqrt{3}$ (sudut $-120^\\circ$ berada di Kuadran III, di mana tangen bernilai positif)."
+    },
+    {
+      topic: "Perbandingan Segitiga Siku-siku",
+      question: "Diketahui $\\triangle KLM$ siku-siku di $L$. Jika panjang $KM = 10\\sqrt{2}\\text{ cm}$ dan $\\angle M = 45^\\circ$, maka panjang sisi $KL$ adalah ....",
+      options: ["$5\\text{ cm}$", "$10\\text{ cm}$", "$5\\sqrt{2}\\text{ cm}$", "$20\\text{ cm}$"],
+      correct: 1,
+      explanation: "$\\sin 45^\\circ = \\frac{KL}{KM} \\Rightarrow \\frac{\\sqrt{2}}{2} = \\frac{KL}{10\\sqrt{2}} \\Rightarrow KL = \\frac{10 \\cdot 2}{2} = 10\\text{ cm}$."
+    },
+    {
+      topic: "Aplikasi Kasus Nyata",
+      question: "Dari puncak mercusuar setinggi $45\\text{ m}$ di atas permukaan laut, seorang penjaga melihat sebuah kapal dengan sudut depresi $30^\\circ$. Jarak mendatar kapal dari kaki mercusuar adalah ....",
+      options: ["$15\\sqrt{3}\\text{ m}$", "$45\\text{ m}$", "$45\\sqrt{3}\\text{ m}$", "$90\\text{ m}$"],
+      correct: 2,
+      explanation: "Sudut depresi $30^\\circ$ sama dengan sudut elevasi dari kapal ke puncak mercusuar. $\\tan 30^\\circ = \\frac{45}{x} \\Rightarrow x = \\frac{45}{1/\\sqrt{3}} = 45\\sqrt{3}\\text{ m}$."
+    },
+    {
+      topic: "Sudut Lebih dari 90°",
+      question: "Diketahui $\\sin \\theta = \\frac{5}{13}$ dengan $90^\\circ < \\theta < 180^\\circ$. Nilai dari $\\cos \\theta$ adalah ....",
+      options: ["$-\\frac{12}{13}$", "$\\frac{12}{13}$", "$-\\frac{5}{12}$", "$\\frac{5}{12}$"],
+      correct: 0,
+      explanation: "Pada rentang $90^\\circ < \\theta < 180^\\circ$ (Kuadran II), $\\cos \\theta$ bernilai negatif. Sisi samping $= \\sqrt{13^2 - 5^2} = 12$, sehingga $\\cos \\theta = -\\frac{12}{13}$."
+    },
+    {
+      topic: "Sudut Negatif & Positif",
+      question: "Nilai dari $\\sin 390^\\circ + \\cos(-60^\\circ)$ adalah ....",
+      options: ["$0$", "$\\frac{1}{2}$", "$\\frac{\\sqrt{3}+1}{2}$", "$1$"],
+      correct: 3,
+      explanation: "$\\sin 390^\\circ = \\sin(360^\\circ + 30^\\circ) = \\sin 30^\\circ = \\frac{1}{2}$. $\\cos(-60^\\circ) = \\cos 60^\\circ = \\frac{1}{2}$. Maka $\\frac{1}{2} + \\frac{1}{2} = 1$."
+    },
+    {
+      topic: "Perbandingan Segitiga Siku-siku",
+      question: "Pada segitiga $ABC$ siku-siku di $C$, diketahui $\\cos A = \\frac{2}{3}$ dan panjang $AC = 8\\text{ cm}$. Panjang sisi $BC$ adalah ....",
+      options: ["$12\\text{ cm}$", "$4\\sqrt{5}\\text{ cm}$", "$6\\text{ cm}$", "$8\\sqrt{5}\\text{ cm}$"],
+      correct: 1,
+      explanation: "$\\cos A = \\frac{AC}{AB} = \\frac{2}{3} \\Rightarrow \\frac{8}{AB} = \\frac{2}{3} \\Rightarrow AB = 12\\text{ cm}$. Maka $BC = \\sqrt{12^2 - 8^2} = \\sqrt{144 - 64} = \\sqrt{80} = 4\\sqrt{5}\\text{ cm}$."
+    },
+    {
+      topic: "Aplikasi Kasus Nyata",
+      question: "Sebuah layang-layang diterbangkan dengan panjang benang $80\\text{ m}$ yang dianggap lurus. Jika sudut antara benang dan tanah horizontal adalah $60^\\circ$ dan tinggi tangan pemegang benang $1\\text{ m}$, ketinggian layang-layang dari tanah adalah ....",
+      options: ["$(40\\sqrt{3} + 1)\\text{ m}$", "$41\\text{ m}$", "$(40\\sqrt{2} + 1)\\text{ m}$", "$(80\\sqrt{3} + 1)\\text{ m}$"],
+      correct: 0,
+      explanation: "Tinggi vertikal dari tangan $= 80 \\cdot \\sin 60^\\circ = 80 \\cdot \\frac{\\sqrt{3}}{2} = 40\\sqrt{3}\\text{ m}$. Ditambah tinggi tangan $1\\text{ m}$ menjadi $(40\\sqrt{3} + 1)\\text{ m}$."
+    },
+    {
+      topic: "Sudut Lebih dari 90°",
+      question: "Bentuk sederhana dari $\\frac{\\sin 135^\\circ \\cdot \\cos 210^\\circ}{\\tan 315^\\circ}$ adalah ....",
+      options: ["$-\\frac{\\sqrt{6}}{4}$", "$-\\frac{\\sqrt{2}}{4}$", "$\\frac{\\sqrt{6}}{4}$", "$\\frac{\\sqrt{2}}{4}$"],
+      correct: 2,
+      explanation: "$\\sin 135^\\circ = \\frac{\\sqrt{2}}{2}$, $\\cos 210^\\circ = -\\frac{\\sqrt{3}}{2}$, dan $\\tan 315^\\circ = -1$. Maka $\\frac{(\\frac{\\sqrt{2}}{2})(-\\frac{\\sqrt{3}}{2})}{-1} = \\frac{\\sqrt{6}}{4}$."
+    },
+    {
+      topic: "Sudut Negatif & Positif",
+      question: "Sudut $-210^\\circ$ memiliki nilai sinus yang sama dengan ....",
+      options: ["$\\sin 30^\\circ$", "$-\\sin 30^\\circ$", "$\\cos 30^\\circ$", "$-\\cos 30^\\circ$"],
+      correct: 0,
+      explanation: "$-210^\\circ + 360^\\circ = 150^\\circ$ (Kuadran II). Sehingga $\\sin(-210^\\circ) = \\sin 150^\\circ = \\sin 30^\\circ = \\frac{1}{2}$."
+    },
+    {
+      topic: "Perbandingan Segitiga Siku-siku",
+      question: "Sebuah segitiga siku-siku memiliki hipotenusa $14\\text{ cm}$ dan salah satu sudut lancipnya $30^\\circ$. Keliling segitiga tersebut adalah ....",
+      options: ["$(21 + 7\\sqrt{2})\\text{ cm}$", "$(14 + 7\\sqrt{3})\\text{ cm}$", "$(28 + 7\\sqrt{3})\\text{ cm}$", "$(21 + 7\\sqrt{3})\\text{ cm}$"],
+      correct: 3,
+      explanation: "Sisi depan $30^\\circ = 14 \\sin 30^\\circ = 7\\text{ cm}$. Sisi samping $30^\\circ = 14 \\cos 30^\\circ = 7\\sqrt{3}\\text{ cm}$. Keliling $= 14 + 7 + 7\\sqrt{3} = (21 + 7\\sqrt{3})\\text{ cm}$."
+    },
+    {
+      topic: "Aplikasi Kasus Nyata",
+      question: "Sebuah jalan menanjak memiliki kemiringan konstan $15^\\circ$ terhadap bidang datar. Jika sebuah mobil menempuh jarak $200\\text{ m}$ sepanjang jalan menanjak tersebut, kenaikan ketinggian mobil adalah .... (Gunakan $\\sin 15^\\circ \\approx 0,26$)",
+      options: ["$26\\text{ m}$", "$52\\text{ m}$", "$104\\text{ m}$", "$193\\text{ m}$"],
+      correct: 1,
+      explanation: "Kenaikan ketinggian $h = 200 \\cdot \\sin 15^\\circ \\approx 200 \\cdot 0,26 = 52\\text{ m}$."
+    },
+    {
+      topic: "Sudut Lebih dari 90°",
+      question: "Jika $\\tan x = -\\frac{3}{4}$ dan $x$ berada di Kuadran IV, maka nilai $2\\sin x + \\cos x$ adalah ....",
+      options: ["$-\\frac{2}{5}$", "$\\frac{2}{5}$", "$-\\frac{10}{5}$", "$-\\frac{11}{5}$"],
+      correct: 0,
+      explanation: "Di Kuadran IV, $\\sin x = -\\frac{3}{5}$ dan $\\cos x = \\frac{4}{5}$. Jadi $2(-\\frac{3}{5}) + \\frac{4}{5} = -\\frac{6}{5} + \\frac{4}{5} = -\\frac{2}{5}$."
+    },
+    {
+      topic: "Sudut Negatif & Positif",
+      question: "Nilai dari $\\cos(-135^\\circ) \\cdot \\sin(-135^\\circ)$ adalah ....",
+      options: ["$-\\frac{1}{2}$", "$\\frac{1}{2}$", "$-1$", "$1$"],
+      correct: 1,
+      explanation: "$\\cos(-135^\\circ) = \\cos 135^\\circ = -\\frac{\\sqrt{2}}{2}$, dan $\\sin(-135^\\circ) = -\\sin 135^\\circ = -\\frac{\\sqrt{2}}{2}$. Hasil kalinya $(-\\frac{\\sqrt{2}}{2})(-\\frac{\\sqrt{2}}{2}) = \\frac{2}{4} = \\frac{1}{2}$."
+    },
+    {
+      topic: "Perbandingan Segitiga Siku-siku",
+      question: "Pada segitiga $DEF$ siku-siku di $E$, diketahui $\\angle D = 60^\\circ$ dan panjang $EF = 9\\sqrt{3}\\text{ cm}$. Panjang $DE$ adalah ....",
+      options: ["$3\\sqrt{3}\\text{ cm}$", "$18\\text{ cm}$", "$9\\text{ cm}$", "$27\\text{ cm}$"],
+      correct: 2,
+      explanation: "$\\tan 60^\\circ = \\frac{EF}{DE} \\Rightarrow \\sqrt{3} = \\frac{9\\sqrt{3}}{DE} \\Rightarrow DE = 9\\text{ cm}$."
+    },
+    {
+      topic: "Aplikasi Kasus Nyata",
+      question: "Dua pengamat $A$ dan $B$ berada di sisi yang sama terhadap sebuah menara. Pengamat $A$ melihat puncak menara dengan sudut elevasi $60^\\circ$, sedangkan pengamat $B$ melihatnya dengan sudut elevasi $30^\\circ$. Jika tinggi menara $30\\sqrt{3}\\text{ m}$, jarak antara pengamat $A$ dan $B$ adalah ....",
+      options: ["$30\\text{ m}$", "$45\\text{ m}$", "$90\\text{ m}$", "$60\\text{ m}$"],
+      correct: 3,
+      explanation: "Jarak $A$ ke menara: $x_A = \\frac{30\\sqrt{3}}{\\tan 60^\\circ} = 30\\text{ m}$. Jarak $B$ ke menara: $x_B = \\frac{30\\sqrt{3}}{\\tan 30^\\circ} = 90\\text{ m}$. Jarak $AB = 90 - 30 = 60\\text{ m}$."
+    },
+    {
+      topic: "Sudut Lebih dari 90°",
+      question: "Nilai dari $\\cos 240^\\circ + \\sin 330^\\circ - \\tan 135^\\circ$ adalah ....",
+      options: ["$0$", "$-2$", "$1$", "$-1$"],
+      correct: 0,
+      explanation: "$\\cos 240^\\circ = -\\frac{1}{2}$, $\\sin 330^\\circ = -\\frac{1}{2}$, dan $\\tan 135^\\circ = -1$. Maka $(-\\frac{1}{2}) + (-\\frac{1}{2}) - (-1) = -1 + 1 = 0$."
+    },
+    {
+      topic: "Sudut Negatif & Positif",
+      question: "Jika $\\sin(-\\beta) = \\frac{3}{5}$ dan $-90^\\circ < \\beta < 0^\\circ$, maka nilai $\\cos \\beta$ adalah ....",
+      options: ["$-\\frac{4}{5}$", "$\\frac{4}{5}$", "$-\\frac{3}{4}$", "$\\frac{3}{4}$"],
+      correct: 1,
+      explanation: "Karena $-90^\\circ < \\beta < 0^\\circ$, sudut $\\beta$ berada di Kuadran IV, sehingga $\\cos \\beta$ pasti positif. Dengan tripel Pythagoras $3, 4, 5$, diperoleh $\\cos \\beta = \\frac{4}{5}$."
+    },
+    {
+      topic: "Perbandingan Segitiga Siku-siku",
+      question: "Sebuah persegi panjang $PQRS$ memiliki panjang diagonal $PR = 20\\text{ cm}$ dan sudut $\\angle RPQ = 30^\\circ$. Luas persegi panjang tersebut adalah ....",
+      options: ["$50\\sqrt{3}\\text{ cm}^2$", "$200\\sqrt{3}\\text{ cm}^2$", "$100\\sqrt{3}\\text{ cm}^2$", "$100\\text{ cm}^2$"],
+      correct: 2,
+      explanation: "Lebar $QR = 20 \\sin 30^\\circ = 10\\text{ cm}$ dan panjang $PQ = 20 \\cos 30^\\circ = 10\\sqrt{3}\\text{ cm}$. Luas $= 10\\sqrt{3} \\times 10 = 100\\sqrt{3}\\text{ cm}^2$."
+    },
+    {
+      topic: "Aplikasi Kasus Nyata",
+      question: "Sebuah drone terbang mendatar pada ketinggian $100\\text{ m}$ di atas tanah. Mula-mula sudut elevasi drone dari pengamat adalah $45^\\circ$, beberapa detik kemudian berubah menjadi $30^\\circ$ menjauhi pengamat. Jarak tempuh drone selama selang waktu tersebut adalah ....",
+      options: ["$100(\\sqrt{3} + 1)\\text{ m}$", "$100\\sqrt{3}\\text{ m}$", "$50(\\sqrt{3} - 1)\\text{ m}$", "$100(\\sqrt{3} - 1)\\text{ m}$"],
+      correct: 3,
+      explanation: "Jarak awal $d_1 = \\frac{100}{\\tan 45^\\circ} = 100\\text{ m}$. Jarak akhir $d_2 = \\frac{100}{\\tan 30^\\circ} = 100\\sqrt{3}\\text{ m}$. Jarak tempuh $= 100\\sqrt{3} - 100 = 100(\\sqrt{3} - 1)\\text{ m}$."
+    },
+    {
+      topic: "Sudut Lebih dari 90°",
+      question: "Pernyataan yang benar untuk sudut $\\alpha = 290^\\circ$ adalah ....",
+      options: [
+        "$\\sin 290^\\circ < 0$ dan $\\cos 290^\\circ > 0$",
+        "$\\sin 290^\\circ > 0$ dan $\\cos 290^\\circ > 0$",
+        "$\\sin 290^\\circ < 0$ dan $\\cos 290^\\circ < 0$",
+        "$\\sin 290^\\circ > 0$ dan $\\tan 290^\\circ > 0$"
+      ],
+      correct: 0,
+      explanation: "Sudut $290^\\circ$ terletak di Kuadran IV ($270^\\circ < 290^\\circ < 360^\\circ$). Di Kuadran IV hanya kosinus (dan sekan) yang bernilai positif, sedangkan sinus dan tangen negatif."
+    },
+    {
+      topic: "Sudut Negatif & Positif",
+      question: "Nilai dari $\\sin 405^\\circ \\cdot \\cos(-45^\\circ)$ adalah ....",
+      options: ["$1$", "$\\frac{1}{2}$", "$\\frac{\\sqrt{2}}{2}$", "$-\\frac{1}{2}$"],
+      correct: 1,
+      explanation: "$\\sin 405^\\circ = \\sin(360^\\circ + 45^\\circ) = \\sin 45^\\circ = \\frac{\\sqrt{2}}{2}$, dan $\\cos(-45^\\circ) = \\cos 45^\\circ = \\frac{\\sqrt{2}}{2}$. Hasil kalinya $\\frac{\\sqrt{2}}{2} \\cdot \\frac{\\sqrt{2}}{2} = \\frac{1}{2}$."
+    },
+    {
+      topic: "Aplikasi Kasus Nyata",
+      question: "Sebuah kapal berlayar dari pelabuhan ke arah timur sejauh $12\\text{ km}$, lalu berbelok ke arah utara sejauh $12\\sqrt{3}\\text{ km}$. Besar sudut arah kapal sekarang diukur dari arah timur adalah ....",
+      options: ["$30^\\circ$", "$45^\\circ$", "$60^\\circ$", "$75^\\circ$"],
+      correct: 2,
+      explanation: "$\\tan \\theta = \\frac{\\text{utara}}{\\text{timur}} = \\frac{12\\sqrt{3}}{12} = \\sqrt{3} \\Rightarrow \\theta = 60^\\circ$."
+    },
+    {
+      topic: "Sudut Lebih dari 90°",
+      question: "Nilai dari $\\cos 180^\\circ + \\sin 270^\\circ - \\cos 90^\\circ$ adalah ....",
+      options: ["$0$", "$-1$", "$2$", "$-2$"],
+      correct: 3,
+      explanation: "$\\cos 180^\\circ = -1$, $\\sin 270^\\circ = -1$, dan $\\cos 90^\\circ = 0$. Maka $(-1) + (-1) - 0 = -2$."
+    }
+  ];
+
+  // State aplikasi
+  let state = {
+    currentIndex: 0,
+    answers: {} // format: { 0: 2, 1: 0, ... } -> questionIndex: selectedOptionIndex
+  };
+
+  // Muat state dari localStorage
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed.currentIndex === 'number' && parsed.currentIndex >= 0 && parsed.currentIndex < QUESTIONS.length) {
+          state.currentIndex = parsed.currentIndex;
+        }
+        if (parsed.answers && typeof parsed.answers === 'object') {
+          state.answers = parsed.answers;
+        }
+      }
+    } catch (e) {
+      console.warn("Gagal membaca localStorage:", e);
+    }
+  }
+
+  // Simpan state ke localStorage
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      const indicator = document.getElementById('save-indicator');
+      if (indicator) {
+        indicator.textContent = "Tersimpan otomatis ✓";
+        setTimeout(() => {
+          indicator.textContent = "Progres aman di browser";
+        }, 1200);
+      }
+    } catch (e) {
+      console.warn("Gagal menyimpan ke localStorage:", e);
+    }
+  }
+
+  // Render rumus matematika menggunakan KaTeX jika tersedia, atau fallback bersih jika offline
+  function renderMathSafe() {
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    } else {
+      // Fallback sederhana bila CDN KaTeX belum termuat saat offline pertama kali
+      document.querySelectorAll('.question-text, .option-text, .feedback-exp').forEach(el => {
+        el.innerHTML = el.innerHTML
+          .replace(/\$([^$]+)\$/g, (_, expr) => {
+            return expr
+              .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1/$2)')
+              .replace(/\\sqrt\{([^}]+)\}/g, '√$1')
+              .replace(/\\circ/g, '°')
+              .replace(/\\sin/g, 'sin')
+              .replace(/\\cos/g, 'cos')
+              .replace(/\\tan/g, 'tan')
+              .replace(/\\theta/g, 'θ')
+              .replace(/\\alpha/g, 'α')
+              .replace(/\\beta/g, 'β')
+              .replace(/\\angle/g, '∠')
+              .replace(/\\triangle/g, '△')
+              .replace(/\\cdot/g, '·')
+              .replace(/\\times/g, '×')
+              .replace(/\\approx/g, '≈')
+              .replace(/\\Rightarrow/g, '⇒')
+              .replace(/\\text\{([^}]+)\}/g, '$1');
+          });
+      });
+    }
+  }
+
+  // Render seluruh tampilan
+  function render() {
+    const q = QUESTIONS[state.currentIndex];
+    const userChoice = state.answers[state.currentIndex];
+    const isAnswered = userChoice !== undefined;
+
+    document.getElementById('q-number-label').textContent = `Soal ${state.currentIndex + 1} dari ${QUESTIONS.length}`;
+    document.getElementById('q-topic-label').textContent = q.topic;
+    document.getElementById('question-text').innerHTML = q.question;
+
+    // Render opsi jawaban
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+    const letters = ['A', 'B', 'C', 'D'];
+
+    q.options.forEach((optText, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.disabled = isAnswered;
+
+      if (isAnswered) {
+        if (idx === q.correct) {
+          btn.classList.add('correct');
+        } else if (idx === userChoice && userChoice !== q.correct) {
+          btn.classList.add('wrong');
+        }
+      }
+
+      btn.innerHTML = `
+        <span class="option-letter">${letters[idx]}</span>
+        <span class="option-text">${optText}</span>
+      `;
+
+      btn.onclick = () => selectAnswer(idx);
+      optionsContainer.appendChild(btn);
+    });
+
+    // Render kotak umpan balik langsung
+    const feedbackBox = document.getElementById('feedback-box');
+    const feedbackTitle = document.getElementById('feedback-title');
+    const feedbackExp = document.getElementById('feedback-exp');
+
+    if (isAnswered) {
+      const isRight = userChoice === q.correct;
+      feedbackBox.className = `feedback-box show ${isRight ? 'is-correct' : 'is-wrong'}`;
+      feedbackTitle.textContent = isRight
+        ? '✓ Jawaban Kamu Benar!'
+        : `✕ Jawaban Kamu Kurang Tepat (Jawaban Benar: ${letters[q.correct]})`;
+      feedbackExp.innerHTML = `<strong>Pembahasan:</strong> ${q.explanation}`;
+    } else {
+      feedbackBox.className = 'feedback-box';
+    }
+
+    // Tombol navigasi bawah
+    document.getElementById('prev-btn').disabled = state.currentIndex === 0;
+    document.getElementById('next-btn').disabled = state.currentIndex === QUESTIONS.length - 1;
+
+    renderSidebar();
+    renderMathSafe();
+  }
+
+  // Render navigasi 1-30 dan statistik
+  function renderSidebar() {
+    let correctCount = 0;
+    let wrongCount = 0;
+
+    const navGrid = document.getElementById('nav-grid');
+    navGrid.innerHTML = '';
+
+    QUESTIONS.forEach((q, idx) => {
+      const ans = state.answers[idx];
+      const btn = document.createElement('button');
+      btn.className = 'nav-num';
+      btn.textContent = idx + 1;
+
+      if (idx === state.currentIndex) {
+        btn.classList.add('active');
+      }
+
+      if (ans !== undefined) {
+        if (ans === q.correct) {
+          btn.classList.add('answered-correct');
+          correctCount++;
+        } else {
+          btn.classList.add('answered-wrong');
+          wrongCount++;
+        }
+      }
+
+      btn.onclick = () => {
+        state.currentIndex = idx;
+        saveState();
+        render();
+      };
+
+      navGrid.appendChild(btn);
+    });
+
+    const totalAnswered = correctCount + wrongCount;
+    const unanswered = QUESTIONS.length - totalAnswered;
+    const score = Math.round((correctCount / QUESTIONS.length) * 100);
+
+    document.getElementById('stat-correct').textContent = correctCount;
+    document.getElementById('stat-wrong').textContent = wrongCount;
+    document.getElementById('stat-unanswered').textContent = unanswered;
+    document.getElementById('progress-text').textContent = `${totalAnswered}/${QUESTIONS.length}`;
+    document.getElementById('progress-bar').style.width = `${(totalAnswered / QUESTIONS.length) * 100}%`;
+    document.getElementById('header-score').textContent = score;
+
+    const summaryBanner = document.getElementById('summary-banner');
+    if (totalAnswered === QUESTIONS.length) {
+      summaryBanner.classList.add('show');
+      document.getElementById('final-grade-text').textContent =
+        `Skor Akhir: ${score}/100 (${correctCount} Benar, ${wrongCount} Salah)`;
+    } else {
+      summaryBanner.classList.remove('show');
+    }
+  }
+
+  // Aksi memilih jawaban
+  function selectAnswer(optionIndex) {
+    if (state.answers[state.currentIndex] !== undefined) return;
+    state.answers[state.currentIndex] = optionIndex;
+    saveState();
+    render();
+  }
+
+  function goPrev() {
+    if (state.currentIndex > 0) {
+      state.currentIndex--;
+      saveState();
+      render();
+    }
+  }
+
+  function goNext() {
+    if (state.currentIndex < QUESTIONS.length - 1) {
+      state.currentIndex++;
+      saveState();
+      render();
+    }
+  }
+
+  function resetQuiz() {
+    if (confirm('Apakah kamu yakin ingin menghapus semua jawaban dan mengulang kuis dari awal?')) {
+      state = { currentIndex: 0, answers: {} };
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+    }
+  }
+
+  // Pantau status jaringan online/offline
+  function updateNetworkIndicator() {
+    const dot = document.getElementById('net-dot');
+    const text = document.getElementById('net-text');
+    if (navigator.onLine) {
+      dot.classList.remove('offline');
+      text.textContent = 'Online • Tersimpan Otomatis';
+    } else {
+      dot.classList.add('offline');
+      text.textContent = 'Offline • Mode Lokal Aman';
+    }
+  }
+
+  window.addEventListener('online', updateNetworkIndicator);
+  window.addEventListener('offline', updateNetworkIndicator);
+
+  // Navigasi keyboard (panah kiri/kanan)
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') goPrev();
+    if (e.key === 'ArrowRight') goNext();
+  });
+
+  // Inisialisasi awal
+  loadState();
+  updateNetworkIndicator();
+  render();
+</script>
+
+</body>
+</html>
